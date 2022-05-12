@@ -1,0 +1,113 @@
+<div class="main-div">
+  <mat-card class="quizcard">
+    <mat-card-title>
+      <div class="section-title mt-50">
+        <h2>show Detail quiz</h2>
+      </div></mat-card-title
+    >
+
+    <div class="d-flex flex-row">
+      <div class="p-2">title</div>
+      <div class="p-2">{{ quiz.title }}</div>
+    </div>
+    <div class="d-flex flex-row">
+      <div class="p-2">description</div>
+      <div class="p-2">{{ quiz.description }}</div>
+    </div>
+    <div class="d-flex flex-row">
+      <div class="p-2">creationdate</div>
+      <div class="p-2">{{ quiz.creationdate | date: "dd-MM-yyyy" }}</div>
+    </div>
+    <div class="d-flex flex-row">
+      <div class="p-2">limitdate</div>
+      <div class="p-2">{{ quiz.limitdate | date: "dd-MM-yyyy" }}</div>
+    </div>
+    <div class="d-flex flex-row">
+      <div class="p-2">countdown</div>
+      <div class="p-2">{{ quiz.countdown }}</div>
+    </div>
+    <div class="d-flex flex-row">
+      <div class="p-2">evaluation model</div>
+      <div class="p-2">{{ quiz.evaluationmodel }}</div>
+    </div>
+  </mat-card>
+</div>
+
+<div *ngFor="let questionlist of quiz.questionsList">
+  <div class="main-div">
+    <mat-card>
+      <div class="d-flex flex-row">
+        <div class="p-2"><h4>Question</h4></div>
+        <div class="p-4"></div>
+        <div class="p-2">
+          <h4>{{ questionlist.question }}</h4>
+        </div>
+      </div>
+      <div class="d-flex flex-row">
+        <div class="p-2"><h4>Points</h4></div>
+        <div class="p-4"></div>
+        <div class="p-3"></div>
+        <div class="p-2">
+          <h4>{{ questionlist.points }}</h4>
+        </div>
+      </div>
+      <!--qcm-->
+      <div *ngIf="quiz.type == 'QCM'">
+        <div *ngFor="let correct of questionlist.correctanswer">
+          <div class="d-flex flex-row">
+            <div class="p-2">
+              <mat-checkbox disabled [checked]="state"
+                ><h4>{{ correct }}</h4></mat-checkbox
+              >
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-row">
+          <!--  <div class="p-2"><h4>wrong anwer</h4></div>-->
+          <div class="p-2">
+            <mat-checkbox disabled
+              ><h4>{{ questionlist.wronganswer }}</h4></mat-checkbox
+            >
+          </div>
+        </div>
+      </div>
+      <div *ngIf="quiz.type == 'QCU'">
+        <div class="d-flex flex-row">
+          <div class="p-2">
+            <mat-checkbox disabled [checked]="state"
+              ><h4>{{ questionlist.correctanswer }}</h4></mat-checkbox
+            >
+          </div>
+        </div>
+        <div *ngFor="let wrong of questionlist.wronganswer">
+          <div class="d-flex flex-row">
+            <div class="p-2">
+              <mat-checkbox disabled
+                ><h4>{{ wrong }}</h4></mat-checkbox
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="quiz.type == 'Y/N'">
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button value="correctanswer" disabled [checked]="state"
+            ><h4>{{ questionlist.correctanswer }}</h4></mat-radio-button
+          ><br />
+
+          <mat-radio-button value="wronganswer" disabled
+            ><h4>{{ questionlist.wronganswer }}</h4></mat-radio-button
+          >
+        </mat-radio-group>
+      </div>
+      <div *ngIf="quiz.type == 'Open_questions'">
+        <div class="d-flex flex-row">
+          <div class="p-2"><h4>Key words</h4></div>
+          <div class="p-2">
+            <h4>{{ questionlist.correctanswer }}</h4>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

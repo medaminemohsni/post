@@ -1,0 +1,152 @@
+<!--====== Company form PART  ======-->
+
+<section id="contact-page" class="pt-90 pb-120 gray-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="company-title mt-30">
+          <div class="section-title">
+            <h3>Welcome to courzelo for business</h3>
+            <h5>Start with registering your company Now!</h5>
+          </div>
+          <!-- section title -->
+          <div class="main-form pt-45">
+            <form
+              id="company-form"
+              #f="ngForm"
+              [formGroup]="Form"
+              autocomplete="off"
+              novalidate
+            >
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="singel-form">
+                    <mat-form-field>
+                      <input
+                        matInput
+                        formControlName="companyName"
+                        type="text"
+                        placeholder="Company name"
+                      />
+                      <!-- <mat-error *ngIf="Form.hasError('companyName', 'required')">Company name field is obligatory</mat-error>
+                                             -->
+                    </mat-form-field>
+                  </div>
+                  <!-- singel form -->
+                </div>
+                <div class="col-md-12">
+                  <div class="singel-form">
+                    <mat-form-field>
+                      <input
+                        matInput
+                        formControlName="email"
+                        type="email"
+                        placeholder="Email"
+                      />
+                      <!--  <mat-error *ngIf="Form.hasError('email', 'required')">email field is obligatory</mat-error>
+                                              --></mat-form-field
+                    >
+                  </div>
+                  <!-- singel form -->
+                </div>
+                <div class="col-md-12">
+                  <div class="singel-form">
+                    <mat-form-field>
+                      <input
+                        matInput
+                        formControlName="address"
+                        type="text"
+                        placeholder="Address"
+                      />
+                      <!--  <mat-error *ngIf="Form.hasError('address', 'required')">Address field is obligatory</mat-error>
+                                             -->
+                    </mat-form-field>
+                  </div>
+                  <!-- singel form -->
+                </div>
+                <div class="col-md-12">
+                  <div class="singel-form">
+                    <mat-form-field>
+                      <input
+                        matInput
+                        formControlName="phone"
+                        type="text"
+                        placeholder="Phone"
+                      />
+                      <!-- <mat-error *ngIf="Form.hasError('phone', 'required')">phone field is obligatory</mat-error>
+                                               -->
+                    </mat-form-field>
+                  </div>
+                  <!-- singel form -->
+                </div>
+                <div class="col-md-12">
+                  <div class="singel-form">
+                    <mat-form-field>
+                      <input
+                        matInput
+                        formControlName="activity"
+                        type="text"
+                        placeholder="Activity type"
+                      />
+                      <!--<mat-error *ngIf="Form.hasError('activity', 'required')">formControlName field is obligatory</mat-error>
+                                                --></mat-form-field
+                    >
+                  </div>
+                  <!-- singel form -->
+                </div>
+                <div class="col-md-12">
+                  <div class="singel-form">
+                    <mat-form-field>
+                      <input
+                        matInput
+                        formControlName="employeesNb"
+                        type="text"
+                        placeholder="Employees number"
+                      />
+                      <!--  <mat-error *ngIf="Form.hasError('employeesNb', 'required')">Employees number field is obligatory</mat-error>
+                                             -->
+                    </mat-form-field>
+                  </div>
+                  <!-- singel form -->
+                </div>
+                <p class="form-message"></p>
+                <div class="col-md-12">
+                  <div class="singel-form">
+                    <button
+                      mat-button
+                      class="main-btn"
+                      (click)="Send()"
+                      routerLink="homepage"
+                    >
+                      Send
+                    </button>
+                  </div>
+                  <!-- singel form -->
+                </div>
+              </div>
+              <!-- row -->
+            </form>
+          </div>
+          <!-- main form -->
+        </div>
+        <!--  contact from -->
+      </div>
+      <div class="col-lg-5">
+        <div class="img-banner mt-30">
+          <div class="img">
+            <img
+              src="../../../../assets/CourzeloBusiness/images/hire.jpg"
+              alt="Logo"
+            />
+          </div>
+          <!-- singel img -->
+        </div>
+        <!-- img-banner-->
+      </div>
+    </div>
+    <!-- row -->
+  </div>
+  <!-- container -->
+</section>
+
+<!--====== CONTACT PART ENDS ======-->

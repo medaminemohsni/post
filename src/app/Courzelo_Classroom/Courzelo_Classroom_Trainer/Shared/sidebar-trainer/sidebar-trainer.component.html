@@ -1,0 +1,104 @@
+
+  <mat-toolbar class="mat-elevation-z8">
+    <mat-toolbar-row>
+      <mat-icon (click)="isExpanded = !isExpanded">
+        menu
+      </mat-icon>
+      <img src="../../../../../../assets/images_courzelo_classroom/logoclass.jpg" class="img-fluid logo_trainer rounded"
+      alt="courzelo_logo" />
+    <nav style="margin-left: 200px;" class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item active" >
+        <a class="navbar-brand navbarstyle" href="trainer/classworktrainer"> Class content</a>
+        </li>
+
+      <li class="nav-item active" >
+        <a class=" navbarstyle" href="/trainer/fluxtrainer">Feed</a>
+      </li>
+      <li class="nav-item active" >
+        <a class=" navbarstyle" href="#">Assessments</a>
+      </li>
+
+      <li class="nav-item" >
+        <a class=" navbarstyle" href="/trainer/attendeestrainer">Students</a>
+      </li>
+
+      <li class="nav-item active" >
+        <a class=" navbarstyle" href="/trainer/gradestrainer">Grades Center</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+<div class="pluss">
+<div   class="example-button-container">
+  
+  <button mat-mini-fab color="basic" class="plus" style="margin-left: 1200px;;"aria-label="Example icon button with a plus one icon" mat-button [matMenuTriggerFor]="menu"><a ><mat-icon class="plus">settings</mat-icon></a></button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item   (click)="AddJobDialog()">Edit course information</button>
+    <button mat-menu-item  (click)="deleteFormation()" >Delete course</button>
+  </mat-menu>
+
+
+  </div>
+
+
+
+<div><img src="../../../../../../assets/images_courzelo_classroom/all-icon/profil.png" style="width: 40px;height: 40px;margin-left: 580px" alt="News"></div>
+
+</div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-container mat-typography" autosize>
+
+    <mat-sidenav #sidenav="matSidenav">
+      <mat-nav-list>
+        <mat-list-item routerLink="">
+
+
+        </mat-list-item>
+        <mat-list-item routerLink="/coursestrainer">
+          <mat-icon matListIcon class="icon-logo">business</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Courses</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <div >
+        <mat-list-item   routerLink="#">
+          <mat-icon matListIcon class="icon-logo">assignment</mat-icon>
+          <h4 matLine *ngIf="isExpanded">to correct</h4>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+      </div>
+
+        <mat-list-item routerLink="/archivedcoursestrainer">
+          <mat-icon matListIcon class="icon-logo">import_contacts</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Archived Courses</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="/trainer/cal">
+          <mat-icon matListIcon class="icon-logo">calendar_today</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Calendar</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <!--<mat-list-item  routerLink="#">
+          <mat-icon matListIcon class="icon-logo">book</mat-icon>
+          <h4 matLine *ngIf="isExpanded" >Trainee Space</h4>
+        </mat-list-item>-->
+
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+    <br>
+       <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+

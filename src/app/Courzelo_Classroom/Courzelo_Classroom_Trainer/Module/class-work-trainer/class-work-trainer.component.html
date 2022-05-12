@@ -1,0 +1,119 @@
+<button mat-raised-button class="main-btn" [matMenuTriggerFor]="menu" style="margin-left: 200px">
+  <mat-icon class="plus">add</mat-icon> Create
+</button>
+<mat-menu #menu="matMenu">
+  <button   (click)="addSection()" mat-menu-item>
+    <mat-icon>done_outline</mat-icon>Course section
+  </button>
+ 
+  <button mat-menu-item>
+    <mat-icon>help_outline</mat-icon>Separate course phase
+  </button>
+  
+</mat-menu>
+<mat-slide-toggle style="margin-left: 550px" [color]="v" (change)="changeEditing()">Editing </mat-slide-toggle>
+
+<br />
+<br />
+<div class="draganddrop" >
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let i of sections" cdkDrag  >
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+
+      <mat-expansion-panel class="matTab" [expanded]="step === 0" (opened)="setStep(0)"    hideToggle>
+        <mat-expansion-panel-header style="height: 122px;">
+          <mat-panel-title> 
+
+             <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="title" value="" (change)="updateName(i.idSection)" [(ngModel)]="section.title" [disabled]="test">
+{{i.title}}
+          </mat-form-field>
+
+            </mat-panel-title>
+          <mat-panel-description>
+         
+            <mat-icon class="peticon">more_vert</mat-icon>
+          </mat-panel-description>
+
+
+
+
+
+
+          
+        </mat-expansion-panel-header>
+        <button mat-raised-button  [disabled]="test" class="main-btn" [matMenuTriggerFor]="menu" style="margin-left: 550px">
+           Add resources
+        </button>
+        <mat-menu #menu="matMenu">
+          <button (click)="AddphaseDialog()" mat-menu-item>
+            Add phase
+          </button>
+          <button (click)="AddtextDialog()" mat-menu-item >
+            Add text
+          </button>
+          <button (click)="AddphaseDialog()" mat-menu-item>
+            Add PDF file
+          </button>
+          <button (click)="AddphaseDialog()" mat-menu-item>
+            Embed youtube video 
+          </button>
+      
+        </mat-menu> 
+       
+
+        <div class="draganddrop" >
+          <div cdkDropList class="example-list1" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let j of phase" cdkDrag  >
+              <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        
+              <mat-expansion-panel class="matTab" [expanded]="step === 0" (opened)="setStep(0)"    hideToggle>
+                <mat-expansion-panel-header style="height: 122px;">
+                  <mat-panel-title> 
+        
+                  <div>
+
+                  </div>
+        
+                    </mat-panel-title>
+                  <mat-panel-description>
+                 
+                    <mat-icon class="peticon1">more_vert</mat-icon>
+                  </mat-panel-description>
+        
+        
+        
+        
+        
+        
+                  
+                </mat-expansion-panel-header>
+                
+               
+        
+                <mat-action-row>
+                  <button mat-button color="primary" [disabled]="test" (click)="nextStep()">
+                    Close 
+                  </button>
+                </mat-action-row>
+              </mat-expansion-panel>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+        <mat-action-row>
+          <button mat-button color="primary" [disabled]="test" (click)="nextStep()">
+            Close 
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>

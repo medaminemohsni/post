@@ -1,0 +1,262 @@
+<mat-stepper #stepper class="progress-bar">
+  <mat-step label="Create quiz"></mat-step>
+  <mat-step label="Add questions"></mat-step>
+  <mat-step label="Post quiz"></mat-step>
+  <button mat-button matStepperPrevious>Back</button>
+  <button mat-button matStepperNext>Next</button>
+</mat-stepper>
+
+<div class="main-div">
+  <mat-card class="questiontype">
+    <div class="row">
+      <div class="col-sm-4">
+        <mat-card-title>
+          <div class="section-title mt-50">
+            <h2>Type - {{ selected }}</h2>
+          </div>
+        </mat-card-title>
+      </div>
+      <div class="col-sm-8">
+        <mat-chip-list>
+          <mat-chip
+            *ngFor="let type of types"
+            (click)="get(type)"
+            [disabled]="selectable"
+          >
+            {{ type }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+<!--debut Y/N Questions-->
+
+<mat-card *ngIf="selected == 'Y/N'">
+  <form (ngSubmit)="add()" [formGroup]="questionformY_N">
+    <div class="row">
+      <div class="col-sm-9">
+        <mat-form-field>
+          <mat-label>Question</mat-label>
+          <input
+            matInput
+            type="text "
+            formControlName="question"
+            placeholder="ask your question"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+        <mat-form-field>
+          <mat-label>points</mat-label>
+          <input matInput type="number" formControlName="points" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <mat-radio-group
+      aria-label="Select an option"
+      formControlName="correctanswerone_YN"
+    >
+      <mat-radio-button value="Yes">Yes</mat-radio-button><br />
+
+      <mat-radio-button value="No">No</mat-radio-button>
+      <mat-error *ngIf="hasError('correctanswerone_YN', 'required')">
+        Choose a correct answer</mat-error
+      >
+    </mat-radio-group>
+
+    <div class="button text-right">
+      <button class="main-btn" [disabled]="questionformY_N.invalid">Add</button>
+      <button class="post" routerLink="/Quizmanagement">post</button>
+    </div>
+  </form>
+</mat-card>
+
+<!--fin Y/N Questions-->
+
+<!-- debut QCU Questions-->
+<mat-card *ngIf="selected == 'SCQ'">
+  <form (ngSubmit)="add()" [formGroup]="questionformQCU">
+    <div class="row">
+      <div class="col-sm-9">
+        <mat-form-field>
+          <mat-label>Question</mat-label>
+          <input
+            matInput
+            type="text "
+            formControlName="question"
+            placeholder="ask your question"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+        <mat-form-field>
+          <mat-label>points</mat-label>
+          <input matInput type="number" formControlName="points" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-9">
+        <mat-form-field>
+          <mat-label>Correct answer</mat-label>
+          <input
+            matInput
+            type="text "
+            formControlName="correctanswer"
+            placeholder="type your answer"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-9">
+        <mat-form-field>
+          <mat-label>False answer</mat-label>
+          <input
+            matInput
+            type="text "
+            formControlName="wronganswerone"
+            placeholder="type your answer"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-9">
+        <mat-form-field>
+          <mat-label>False answer</mat-label>
+          <input
+            matInput
+            type="text "
+            formControlName="wronganswertwo"
+            placeholder="type your answer"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="button text-right">
+      <button class="main-btn" [disabled]="questionformQCU.invalid">Add</button>
+      <button class="post" routerLink="/Quizmanagement">post</button>
+    </div>
+  </form>
+</mat-card>
+<!-- fin QCU-->
+
+<!--  debut QCM-->
+
+<mat-card *ngIf="selected == 'MCQ'">
+  <form (ngSubmit)="add()" [formGroup]="questionformQCM">
+    <div class="row">
+      <div class="col-sm-9">
+        <mat-form-field>
+          <mat-label>Question</mat-label>
+          <input
+            matInput
+            type="text "
+            formControlName="question"
+            placeholder="ask your question"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+        <mat-form-field>
+          <mat-label>points</mat-label>
+          <input matInput type="number" formControlName="points" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-9">
+        <mat-form-field>
+          <mat-label>Correct answer</mat-label>
+          <input
+            matInput
+            type="text "
+            formControlName="correctanswerone"
+            placeholder="type your answer"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-9">
+        <mat-form-field>
+          <mat-label>Correct answer</mat-label>
+          <input
+            matInput
+            type="text "
+            formControlName="correctanswertwo"
+            placeholder="type your answer"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-9">
+        <mat-form-field>
+          <mat-label>False answer</mat-label>
+          <input
+            matInput
+            type="text "
+            formControlName="wronganswer"
+            placeholder="type your answer"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button class="main-btn" [disabled]="questionformQCM.invalid">Add</button>
+      <button class="post" routerLink="/Quizmanagement">post</button>
+    </div>
+  </form>
+</mat-card>
+<!--fin QCM-->
+
+<!--  debut Open_questions-->
+<mat-card *ngIf="selected == 'Open_questions'">
+  <form (ngSubmit)="add()" [formGroup]="questionformO_Q">
+    <div class="row">
+      <div class="col-sm-9">
+        <mat-form-field>
+          <mat-label>Question</mat-label>
+          <input
+            matInput
+            type="text "
+            formControlName="question"
+            placeholder="ask your question"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+        <mat-form-field>
+          <mat-label>points</mat-label>
+          <input matInput type="number" formControlName="points" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-9">
+        <mat-form-field>
+          <mat-label>Key words</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="correctanswer"
+            placeholder="type your key words"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="button text-right">
+      <button class="main-btn" [disabled]="questionformO_Q.invalid">Add</button>
+      <button class="post" routerLink="/Quizmanagement">post</button>
+    </div>
+  </form>
+</mat-card>
+<!--fin Open_questions-->

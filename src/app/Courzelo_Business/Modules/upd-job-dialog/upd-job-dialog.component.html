@@ -1,0 +1,202 @@
+<div class="section-title mt-50">
+  <h3>Update Job offer</h3>
+</div>
+<!-- section title -->
+
+<div class="close-btn">
+  <button mat-icon-button mat-dialog-close><mat-icon>cancel</mat-icon></button>
+</div>
+<form
+  id="add-form"
+  #f="ngForm"
+  [formGroup]="Form"
+  autocomplete="off"
+  novalidate
+>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="input-bar">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Title"
+            formControlName="title"
+            required
+          />
+          <mat-error *ngIf="hasError('title', 'required')"
+            >title is necessary</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <!-- singel form -->
+    </div>
+
+    <div class="col-lg-12">
+      <div class="input-bar">
+        <mat-form-field class="example-full-width">
+          <textarea
+            matInput
+            placeholder="Description"
+            formControlName="description"
+            required
+          ></textarea>
+          <mat-error *ngIf="hasError('description', 'required')"
+            >Description is necessary</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <!-- singel form -->
+    </div>
+
+    <div class="col-lg-12">
+      <div class="Date-input-bar">
+        <mat-form-field class="col-lg-6">
+          <input
+            matInput
+            [matDatepicker]="picker1"
+            placeholder="Start date"
+            formControlName="startDate"
+            required
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+          <mat-error *ngIf="hasError('startDate', 'required')"
+            >Start Date is necessary</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="col-lg-6">
+          <input
+            matInput
+            [matDatepicker]="picker2"
+            placeholder="Deadline"
+            formControlName="deadlineDate"
+            required
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <mat-error *ngIf="hasError('deadlineDate', 'required')"
+            >Deadline Date is necessary</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <!-- singel form -->
+    </div>
+
+    <div class="col-lg-12">
+      <div class="sm-input-bar">
+        <mat-form-field class="col-lg-6">
+          <mat-select placeholder="State" formControlName="state" required>
+            <mat-option value="Active"> Active </mat-option>
+            <mat-option value="Inactive"> Inactive </mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasError('state', 'required')"
+            >State is necessary</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="col-lg-6">
+          <mat-select placeholder="Job Type" formControlName="jobType" required>
+            <mat-option value="intership"> intership </mat-option>
+            <mat-option value="CDI"> CDI </mat-option>
+            <mat-option value="Full time"> Full time </mat-option>
+            <mat-option value="Part time"> Part time </mat-option>
+            <mat-option value="Freelance"> Freelance </mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasError('jobType', 'required')"
+            >Job Type is necessary</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <!-- singel form -->
+    </div>
+
+    <div class="col-lg-12">
+      <div class="sm-input-bar">
+        <mat-form-field class="col-lg-6">
+          <mat-select
+            placeholder="Location Type"
+            formControlName="locationType"
+          >
+            <mat-option value="remote"> remote </mat-option>
+            <mat-option value="on site"> on site </mat-option>
+            <mat-option value="mixed"> mixed </mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasError('locationType', 'required')"
+            >Location Type is necessary</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="col-lg-6" *ngIf="checkJobLocation()">
+          <input matInput placeholder="Location" formControlName="location" />
+          <mat-error *ngIf="hasError('location', 'required')"
+            >location is necessary</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <!-- singel form -->
+    </div>
+
+    <div class="col-lg-12">
+      <div class="input-bar">
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Requirement"
+            formControlName="requirement"
+            required
+          />
+          <mat-error *ngIf="hasError('requirement', 'required')"
+            >requirement is necessary</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <!-- singel form -->
+    </div>
+
+    <div class="col-lg-12">
+      <div class="sm-input-bar">
+        <mat-form-field class="col-lg-6">
+          <input
+            matInput
+            placeholder="Hiring Number"
+            formControlName="hireNumber"
+          />
+          <mat-error *ngIf="hasError('hireNumber', 'required')"
+            >Hiring Number is necessary</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="col-lg-6">
+          <input matInput placeholder="Salary" formControlName="salary" />
+          <mat-error *ngIf="hasError('salary', 'required')"
+            >Salary is necessary</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <!-- singel form -->
+    </div>
+  </div>
+  <!-- row -->
+</form>
+
+<div mat-dialog-actions style="float: right">
+  <button class="second-btn" mat-dialog-close>Close</button>
+  <button class="second-btn" (click)="Reset()">Reset</button>
+  <button *ngIf="Form.valid" class="main-btn" (click)="updatejob()">
+    Done
+  </button>
+  <button
+    *ngIf="!Form.valid"
+    class="invalid-btn"
+    (click)="validateAllFormFields(Form)"
+  >
+    Done
+  </button>
+</div>

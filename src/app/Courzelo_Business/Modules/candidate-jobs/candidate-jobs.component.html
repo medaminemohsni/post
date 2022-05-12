@@ -1,0 +1,66 @@
+<!--====== PAGE BANNER PART START ======-->
+
+<section id="page-banner " class="pt-105 pb-110 bg_cover" data-overlay="8">
+  <div class="layer"></div>
+  <div class="container">
+    <div class="page-banner-cont">
+      <h2>Job Offers</h2>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="register">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Job Offers</li>
+        </ol>
+      </nav>
+    </div>
+    <!-- page banner cont -->
+  </div>
+  <!-- container -->
+</section>
+
+<div id="event-page" class="pt-90 pb-120 gray-bg">
+  <div class="container">
+    <div class="descrip pt-40">
+      <p>
+        Check out this interesting job offers and post for the company the ones
+        you want to work with
+      </p>
+    </div>
+  </div>
+
+  <section id="event-page" class="pt-90 pb-120 gray-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6" *ngFor="let job of jobOffers">
+          <mat-card class="card-item singel-event-list mt-30">
+            <mat-card-header>
+              <mat-card-title class="section-title mt-50"
+                ><h4>{{ job.title }}</h4></mat-card-title
+              >
+              <mat-card-subtitle
+                >Post you application before :
+                {{ job.deadlineDate | date: "yyyy-MM-dd" }}</mat-card-subtitle
+              >
+            </mat-card-header>
+            <mat-card-content>
+              <div class="row">
+                <div class="details col-lg-5 col-md-5 col-sm-5">
+                  <span> <b>Requirement : </b> {{ job.requirement }}</span>
+                  <span><b>Job type : </b> {{ job.jobType }}</span>
+                  <span><b>hiring number : </b> {{ job.hireNumber }}</span>
+                </div>
+                <div class="btn col-lg-6 col-md-6 col-sm-6">
+                  <button class="details-btn" (click)="Details(job)">
+                    Details
+                  </button>
+                  <button class="main-btn" (click)="AddJobApp(job)">
+                    Apply
+                  </button>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,92 @@
+<mat-stepper #stepper class="progress-bar">
+  <mat-step label="Create quiz"></mat-step>
+  <mat-step label="Add questions"> </mat-step>
+  <mat-step label="Post quiz"></mat-step>
+</mat-stepper>
+
+<mat-card>
+  <mat-card-title>
+    <div class="section-title mt-50">
+      <h2>Create quiz</h2>
+    </div></mat-card-title
+  >
+  <br />
+
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <mat-card-content>
+        <form (ngSubmit)="add()" [formGroup]="Quizform">
+          <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input
+              matInput
+              formControlName="title"
+              placeholder="Ex. angular"
+              required
+            />
+            <mat-error *ngIf="hasError('title', 'required')"
+              >Title is necessary</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea
+              matInput
+              formControlName="description"
+              placeholder="Ex. this quiz consists of ..."
+              required
+            ></textarea>
+            <mat-error *ngIf="hasError('description', 'required')"
+              >description is necessary</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Limit date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="limitdate"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="hasError('limitdate', 'required')"
+              >limitdate is necessary</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>countdown</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="countdown"
+              required
+            />
+            <mat-error *ngIf="hasError('countdown', 'required')"
+              >countdown is necessary</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Evaluation model</mat-label>
+            <mat-select formControlName="evaluationmodel" required>
+              <mat-option value="ALL_OR_NOTHING">All or nothing</mat-option>
+              <mat-option value="GUESSING_PENALTY">Guessing penalty</mat-option>
+              <mat-option value="PARTIAL_CREDIT">Partial credit</mat-option>
+            </mat-select>
+            <mat-error *ngIf="hasError('evaluationmodel', 'required')"
+              >evaluation_model is necessary</mat-error
+            >
+          </mat-form-field>
+          <div class="d-flex justify-content-end">
+            <button class="cancel" routerLink="/quizzSpace">close</button>
+            <button class="main-btn" [disabled]="Quizform.invalid">Done</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </div>
+  </div>
+</mat-card>

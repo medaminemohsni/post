@@ -1,0 +1,52 @@
+<mat-toolbar class="mat-elevation-z8">
+    <mat-toolbar-row>
+      <mat-icon class="menuicon" (click)="isExpanded = !isExpanded">
+        menu
+      </mat-icon>
+  
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <mat-sidenav-container class="example-container mat-typography" autosize>
+  
+    <mat-sidenav #sidenav="matSidenav">
+      <mat-nav-list>
+        <mat-list-item routerLink="">
+  
+     <!--    <img *ngIf="isExpanded" src="../../../../assets/images_trainer/logo.png" class="img-fluid logo_trainer rounded"
+            alt="courzelo_logo" />-->
+        </mat-list-item>
+        <mat-list-item routerLink="/quizzSpace">
+          <mat-icon matListIcon>home</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Home</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="/quizzSpace/Quizmanagement">
+          <mat-icon matListIcon>notes</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Quizs</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="">
+          <mat-icon matListIcon>local_parking</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Projects</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="">
+          <mat-icon matListIcon>insert_drive_file</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Theorical use cases</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="">
+          <mat-icon matListIcon>assignment</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Evaluations for trainer</h4>
+        </mat-list-item>
+  
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+     
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  
+  </mat-sidenav-container>

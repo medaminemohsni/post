@@ -1,0 +1,55 @@
+<button
+  mat-raised-button
+  class="main-btn"
+  [matMenuTriggerFor]="menu"
+  style="margin-left: 200px"
+>
+  <mat-icon class="plus">add</mat-icon>To create
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item><mat-icon>done_outline</mat-icon>Homework</button>
+  <button mat-menu-item><mat-icon>help</mat-icon>Survey</button>
+  <button mat-menu-item><mat-icon>help_outline</mat-icon>Question</button>
+  <button mat-menu-item><mat-icon>library_books</mat-icon>Documentation</button>
+  <button mat-menu-item><mat-icon>remove_from_queue</mat-icon>Theme</button>
+</mat-menu>
+
+<br />
+<br />
+<div class="draganddrop">
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let movie of movies" cdkDrag>
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+
+      <mat-expansion-panel
+        class="matTab"
+        [expanded]="step === 0"
+        (opened)="setStep(0)"
+        hideToggle
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title> Spring boot </mat-panel-title>
+          <mat-panel-description>
+            Homework 1
+            <mat-icon class="peticon">more_vert</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div>
+          Vous pourrez : 1) Télécharger votre demande de stage PFE 2) Faire une
+          demande de convention de stage : vous avez droit à une seule et unique
+          convention de stage de PFE. 3) Après saisie de votre convention de
+          stage, un justificatif de stage sera téléchargeable dans "Mes
+          Documents" . Pour les stages à l'étranger, vous devrez fournir ce
+          justificatif de stage pour l'obtention du Visas.
+        </div>
+
+        <mat-action-row>
+          <button mat-button color="primary" (click)="nextStep()">
+            View homework
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>

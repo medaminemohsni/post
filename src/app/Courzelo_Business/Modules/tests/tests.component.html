@@ -1,0 +1,82 @@
+<div id="preloader" class="table-responsive">
+  <div class="section-title mt-50">
+    <h3>Tests</h3>
+  </div>
+  <!-- section title -->
+
+  <div class="search-bar col-lg-8 col-md-6 col-sm-4 col-xs-1">
+    <mat-form-field>
+      <input
+        matInput
+        (keyup)="doFilter($any($event.target).value)"
+        type="text"
+        placeholder="Search"
+      />
+      <button mat-icon-button><mat-icon>search</mat-icon></button>
+    </mat-form-field>
+  </div>
+
+  <div class="add-btn">
+    <button mat-icon-button routerLink="/AddTests">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </div>
+
+  <table
+    id="preloader"
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    (matSortChange)="SortChange($event)"
+    class="mat-elevation-z9"
+  >
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+      <td mat-cell *matCellDef="let tests">
+        <span> {{ tests.title }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="creationDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Creation Date</th>
+      <td mat-cell *matCellDef="let tests">
+        <span *ngIf="tests.creationDate != null"
+          >{{ tests.creationDate | date: "yyyy-MM-dd" }}
+        </span>
+        <span *ngIf="tests.creationDate === null">----</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+      <td mat-cell *matCellDef="let tests">
+        <span *ngIf="tests.type != null"> {{ tests.type }}</span>
+        <span *ngIf="tests.type === null || tests.type == ''">----</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let tests" class="action-link">
+        <button class="upd-btn" mat-icon-button>
+          <mat-icon>update</mat-icon>
+        </button>
+        <button
+          class="del-btn"
+          mat-icon-button
+          (click)="DeleteTest(tests.idTest)"
+        >
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[3, 10, 25, 50]"
+  ></mat-paginator>
+</div>
