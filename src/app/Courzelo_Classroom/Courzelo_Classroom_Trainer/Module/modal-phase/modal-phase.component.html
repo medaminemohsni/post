@@ -14,10 +14,10 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Title</mat-label>
-      <input matInput placeholder="title" value=""ngModel)>
+      <input matInput placeholder="title" [(ngModel)]="phase.title" value=""  >
     </mat-form-field>
 
-    <mat-form-field class="example-full-width" appearance="fill">
+    <mat-form-field class="example-full-width" [(ngModel)]="phase.postContent" appearance="fill">
         <mat-label>text</mat-label>
         <textarea matInput placeholder="text"></textarea>
       </mat-form-field>

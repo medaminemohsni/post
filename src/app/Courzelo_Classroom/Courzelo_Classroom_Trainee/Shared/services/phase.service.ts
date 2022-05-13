@@ -24,4 +24,5 @@ export class PhaseService {
     return this.httpClient.put("http://localhost:8088/api/Phases/updateName/"+id,phase);
 
   }
+  
 }
